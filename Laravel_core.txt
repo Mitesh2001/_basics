@@ -1,0 +1,9 @@
+Laravel Core :
+	Official documentation : The Basics
+	Routing
+	Controller
+	Views
+	Models & Migrations
+	Request and Responses
+	Middleware
+	Official documentation : Eloquent ORM
