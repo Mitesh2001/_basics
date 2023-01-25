@@ -1,0 +1,24 @@
+-> resources/views directory
+-> helper method view(name,parameters)
+-> can be also returned using View facades :
+    use Illuminate\Support\Facades\View;
+    return View::make(name, parameters);
+-> Nested View Directories
+-> Creating The First Available View : View::first([view list], parameters);
+-> Determining If A View Exists : View:exists(name)
+-> Passing Data To Views : using parameters & with(key,value)
+-> Sharing Data With All Views:
+    - boot() method of App\Providers\AppServiceProvider 
+    - View::share('key', 'value');
+-> View Composers :
+    - View Composers are callback or class methods that are called when a view is rendered
+    - make:provide & the register it in config/app.php $Providers property
+    - Attaching A Composer To Multiple Views
+    - The Composer method also accepts * character as a wildCard, allowing you to attach a Composer to all views.
+-> View Creators:
+    - similar to Composer
+    - executed immediately after the view is instantiated instead of waiting until the view is about to rendere.
+    - View::creator(name,callback)
+-> Optimizing Views :
+    - php artisan view:cache
+    - php artisan view:clear

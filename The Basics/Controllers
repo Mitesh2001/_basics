@@ -1,0 +1,51 @@
+Controllers
+-> app/Http/Controllers directory
+-> Basic Controllers :
+    - the controller extends the base controller App\Http\Controllers\Controller::class
+    Note : Not required to extend a base class - However, you will not have access to convenient features such as the middleware and authorize methods
+    - Single Action Controllers :
+        - generate : pa make:controller ControllerName --invokable
+        -  __invoke() method in controller
+        - Route::post('/url', SingleActionController::class);
+-> Controller Middleware :
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('log')->only('index');
+        $this->middleware('subscribed')->except('store');
+    }
+    - only() & expect() method
+    - Controllers also allow you to register middleware using a closure
+    $this->middleware(function ($request, $next) {
+        return $next($request);
+    });
+-> Resource Controllers :
+    --resource while creating controller
+    - Route::resource('url', ResourceController::class);
+    - can register many resource controller : Route::resources([array])
+    - Actions Handled By Resource Controller
+    - Customizing Missing Model Behavior : missing(anonymous method)
+    - Soft Deleted Models : withTrashed()
+    - Specifying The Resource Model : ... --model=Photo --resource
+    - Generating Form Requests : ... --model=Photo --resource --requests
+    - Partial Resource Routes
+        - Route::resource('url', ResourceController::class)->only(['index', 'show']);
+        - Route::resource('url', ResourceController::class)->except(['create', 'store', 'update', 'destroy']);
+    - API Resource Routes 
+        - apiResource() & apiResources()
+        - php artisan make:controller PhotoController --api
+        - exclude routes that present HTML templates such as create() and edit() method
+    - Naming Resource Routes 
+        ...names([
+            'create' => 'data.build'
+            'method' => 'name'
+            ])
+    - Naming Resource Route Parameters
+        ...parameters([
+            'users' => 'admin_user'
+        ]);
+
+-> Dependency Injection & Controllers : 
+    - Constructor Injection : ex. UserRepository in __construct() method
+    - Method Injection : ex. Request in store() method
+    - parameter in methods of Controllers
