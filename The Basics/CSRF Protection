@@ -1,0 +1,11 @@
+CSRF Protection
+-> Introduction
+-> An Explanation Of The Vulnerability
+-> Laravel automatically generates a CSRF "token" for each active user session managed by the application.
+-> stored in the user's session and changes each time the session is regenerated
+-> access via csrf_token() helper method
+-> in HTML FORM via _token hidden field or @csrf blade syntax 
+-> VerifyCsrfToken middleware automatically
+-> Excluding URIs From CSRF Protection : $except property of VerifyCsrfToken middleware
+-> X-CSRF-Token
+-> X-XSRF-Token

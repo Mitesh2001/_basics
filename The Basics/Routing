@@ -1,0 +1,67 @@
+Routing 
+-> loaded by App\Providers\RouteServiceProvider
+-> routes/web.php : assigned the web middleware group
+-> routes/api.php : assigned the api middleware group
+-> boot method of RouteServiceProvider: 
+    public function boot()
+    {
+        $this->routes(function () {
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+
+            Route::prefix('api')
+                ->middleware('api')
+                ->group(base_path('routes/api.php'));
+        });
+    }
+-> Available Route Methods :
+    HTTP verbs:
+    Route::get($uri, $callback);
+    Route::post($uri, $callback);
+    Route::put($uri, $callback);
+    Route::patch($uri, $callback);
+    Route::delete($uri, $callback);
+    Route::options($uri, $callback);
+-> Route::match() & Route::any()
+-> Dependency Injection 
+-> CSRF Protection : POST, PUT, PATCH, or DELETE should include a CSRF token field using @csrf Otherwise the request will be rejected.
+-> Redirect Routes:
+    Route::redirect('/here', '/there', 301[status code - optional]); OR Route::permanentRedirect('/here', '/there');
+-> Views Routes : 
+    Route::View('/welcome','welcome');
+    Route::View('/welcome','welcome',['name' ,'Mitesh']);
+-> The Route List : php artisan route:list {-v,--path=<path>,--except-vendor,--only-vendor}
+-> Route parameters
+    - Required Parameters : based on their order
+    - parameters with Dependency : route parameters after your dependencies
+    - optional parameters : ? mark after name, assign corresponding variable a default value
+    -RegEx constraints, Global constraints,Encoded Forward slashes
+-> Named Routes :
+    - $url = route('profile', ['id' => 1, 'photos' => 'yes']);
+    - return redirect()->route('profile');
+    - return to_route('profile');
+    - inspecting the current route : $request->route()->named('profile) : will return boolean value
+-> Route Groups : Route::group()
+-> Route Middleware : Route::middleware()
+-> Controller : Route::Controller(ControllerName)...
+-> Subdomain Routing
+-> Route::prefix()...
+-> Route Named prefix : Route::name('admin.')...
+-> Route Model Binding
+    - implicit bindings
+    - soft delete models
+    - customize the key
+    - always use Database column other than id : getRouteKeyName() method in Model
+    - customize key & scoping
+    - customize missing model behaviour
+    - implicit enum bindings
+    - Explicit Binding 
+    - Customizing The Resolution Logic
+-> Form Method Spoofing : _method field OR @method('PUT, PATCH, or DELETE')
+-> Accessing The Current Route : 
+    - $route = Route::current(); // Illuminate\Routing\Route
+    - $name = Route::currentRouteName(); // string
+    - $action = Route::currentRouteAction(); // string
+-> Rate Limiting (Pending...)
+-> Cross-Origin Resource Sharing (CORS)
+-> Route Caching : route:cache, route:clear

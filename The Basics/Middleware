@@ -1,0 +1,14 @@
+Middleware
+-> inspecting and filtering HTTP requests
+-> pa make:middleware command
+-> Middleware & Responses : A middleware can perform tasks before or after passing the request
+-> Registering Middleware
+    - Global Middleware : $middleware property of your app/Http/Kernel.php class
+    - Assigning Middleware To Routes : $routeMiddleware property of ... with key
+    - Excluding Middleware : withoutMiddleware(middleware name OR class)
+    - Middleware Groups : $middlewareGroups property of ... with group name
+-> Sorting Middleware : Rarely, $middlewarePriority property
+-> Middleware Parameters
+-> Terminable Middleware : 
+    - When you need to do some work after the response has been sent to browser
+    - terminate() method : will automatically be called after the response is sent to the browser
