@@ -35,7 +35,9 @@ Controllers
         - apiResource() & apiResources()
         - php artisan make:controller PhotoController --api
         - exclude routes that present HTML templates such as create() and edit() method
-    - Naming Resource Routes 
+    - Nested Resources : 
+        - use "dot" notation => Route::resource('photos.comments', PhotoCommentController::class)
+        - Naming Resource Routes 
         ...names([
             'create' => 'data.build'
             'method' => 'name'
@@ -44,7 +46,20 @@ Controllers
         ...parameters([
             'users' => 'admin_user'
         ]);
-
+    - Scoping Resource Routes : 
+        - scoped(['comment' => 'slug']) => /photos/{photo}/comments/{comment:slug}
+    - Localizing Resource URIs :
+        - boot() method od App\Providers\RouteServiceProvider
+        - Route::resourceVerbs(['create' => 'crear','edit' => 'editar']);
+    - Supplementing Resource Controllers : f you need to add additional routes to a resource controller beyond the default set 
+    of resource routes, you should define those routes before your call to the Route::resource method; otherwise,
+    the routes defined by the resource method may unintentionally take precedence over your supplemental routes
+    - Singleton Resource Controllers:
+        - resource have only single instance
+        - For example PROFILE : Route::singleton('profile', ProfileController::class);
+        - creatable() & destroyable()
+        - API Singleton Resources :
+            - used when rendering the create and edit routes unnecessary, also creatable() & destroyable()
 -> Dependency Injection & Controllers : 
     - Constructor Injection : ex. UserRepository in __construct() method
     - Method Injection : ex. Request in store() method
