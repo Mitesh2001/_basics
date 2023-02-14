@@ -1,3 +1,75 @@
-- ORM(object relational mapper) : makes it easy - enjoyable to interact with database.  
-- Database configuration File : config/database.php
-- 
+-> ORM(object relational mapper) : makes it easy - enjoyable to interact with database.  
+-> Database configuration File : config/database.php
+-> Models live in app\Models directory & extends Illuminate\Database\Eloquent\Model class
+-> php artisan make:model <modalName>
+    * --migration or -m
+    * --factory or -f
+    * --seed or -s
+    * --controller of -c
+    * --resource or -R & --request or -r
+    * --policy
+    * --pivot
+    * --all (model, migration, factory, seeder, policy, controller, and form requests...)
+-> php artisan model:show <modalName>
+-> Table Names :
+    - By default snake case - plural name of the model class
+    - protected $table = 'table_name';
+-> Primary Keys : 
+    - By default 'id';
+    - protected $primaryKey = 'column_name';
+    - public $incrementing = 'boolean_value';
+    - protected $keyType = 'DataType';
+-> UUID(36 characters) & ULID(26 characters) Keys
+-> Timestamps :
+    - public $timestamp = 'boolean_value'
+    - protected $dataFormat - to customize the format of your model's timestamp
+    - to customize the names of the columns : 
+        const CREATED_AT = 'new_name';
+        const UPDATED_AT = 'new_name';
+    - to perform model operations without the model having its updated_at timestamp modified - Model::withoutTimestamps(fn () => $post->increment(['reads']));
+-> Database Connections : protected $connection = 'sqlite';
+-> Default Attribute Values : 
+    protected $attributes = [
+        'options' => '[]',
+        'delayed' => false,
+    ];
+-> Configuring Eloquent Strictness
+-> Retrieving Models:
+    - all() method
+    - Building Queries
+    - Refreshing Models : fresh() & refresh()
+    - collections : reject(clouser...)
+    - Chunking Results : chunk() & chunkById() methods
+    - Chunking Using Lazy Collections : lazy(), lazyById(), lazyByIdDesc() methods
+    - Cursors
+-> Advanced Subqueries:
+    - Subquery Selects : select & addSelect
+    - Subquery Ordering : orderBy
+-> Retrieving Single Models:
+    - Modal::find() - Retrieve a model by its primary key
+    - first() - Retrieve the first model matching the query constraints
+    - firstWhere() - Alternative to retrieving the first model matching the query constraints
+    - findOr(clauser) & firstOr(clauser)
+    - Not Found Exceptions :  
+        - Illuminate\Database\Eloquent\ModelNotFoundException - return 404 HTTP response
+        - findOrFail() & firstOrFail()
+-> Retrieving Or Creating Models:
+    - firstOrCreate(), firstOrNew() and than save()
+    - Retrieving Aggregates : count(),sum(),max('column_name')
+-> Inserting & Updating Models :
+    - Insert :
+        - create a new instance & than save()
+        - create() method : only fillable or excepts guarded properties will assign
+    - Update : 
+        - retrieve a instance of modal & than save()
+        - update method returns the number of affected rows or rows
+        - Examining Attribute Changes : isDirty(),isClean(),wasChanged(),getOriginal()
+    - Mass Assignment : 
+        - protected $fillable
+        - protected $guarded
+        - create() method or fill method for existing instance of model 
+        - Mass Assignment & JSON Columns
+        - Mass Assignment Exceptions
+    - Upserts :
+        - updateOrCreate()
+        - upsert() - for multiple record update
