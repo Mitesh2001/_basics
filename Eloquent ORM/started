@@ -73,3 +73,24 @@
     - Upserts :
         - updateOrCreate()
         - upsert() - for multiple record update
+-> Deleting Models:
+    - delete() method
+    - Modal::truncate() to delete all of the model's associated database records
+    - Deleting An Existing Model By Its Primary Key :
+        - Modal::destroy(<primaryKey|multiplePrimaryKey|array|collection>)
+    - Deleting Models Using Queries : Model::where(column_name, value)->delete();
+    - soft delete:
+        - Illuminate\Database\Eloquent\SoftDeletes trait use in Model class
+        - add deleted_at column in database - $table->softDeletes()
+        - to get trashed record : $modelInstance->trashed()
+        - to restore Soft Deleted Models : $modelInstance->restore()
+        - restore with queries : Model::withTrashed()->where(condition)->restore();
+        - restore with relationships : $modelInstance->history()->restore()
+        - Permanently Deleting Models : 
+            - $modelInstance->forceDelete() & $modelInstance->history()->forceDelete()
+    - Querying Soft Deleted Models
+        - Including Soft Deleted Models : 
+            - Model::withTrashed()->where(condition)->get()
+            - $modelInstance->history()->withTrashed()->get()
+        - Retrieving Only Soft Deleted Models : 
+            - Model::onlyTrashed->where(condition)->get()
