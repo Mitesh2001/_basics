@@ -1,0 +1,7 @@
+-> Laravel used blade template engine
+-> extension : .blade.php stored in resources/views directory
+-> returned using global helper method view()
+-> Displaying Data:
+    - by wrapping the variable in curly braces {{variable_name}}
+    Note : {{}} echo statements are automatically sent through PHP's htmlspecialchars function to prevent XSS(Cross-site scripting) attack.
+    
