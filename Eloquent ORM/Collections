@@ -1,0 +1,13 @@
+-> All Eloquent method that return more than one model result will return instances of Illuminate\Database\Eloquent\Collection class
+-> All collections are iterators
+    - append($attributes)
+    - contains($key, $operator = null, $value = null)
+    - diff($items)
+    - except($keys)
+    - find($key)
+    - fresh($with = [])
+    - intersect($items)
+    - load($relations)
+    - modelKeys()
+    - makeVisible($attributes)
+    - makeHidden($attributes)
