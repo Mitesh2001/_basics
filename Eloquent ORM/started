@@ -94,3 +94,13 @@
             - $modelInstance->history()->withTrashed()->get()
         - Retrieving Only Soft Deleted Models : 
             - Model::onlyTrashed->where(condition)->get()
+            
+|   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |
+|   P   E   N   D   I   N   G   .   .   .   |
+|   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |   |   |   |   |
