@@ -4,4 +4,21 @@
 -> Displaying Data:
     - by wrapping the variable in curly braces {{variable_name}}
     Note : {{}} echo statements are automatically sent through PHP's htmlspecialchars function to prevent XSS(Cross-site scripting) attack.
-    
+-> HTML Entity Encoding: 
+    - boot() method in AppServiceProvider
+    - Blade::withoutDoubleEncoding()
+    - Displaying Unescaped Data : {!! $variable !!}
+-> Blade & JavaScript Frameworks
+    - @ symbol
+    - Rendering JSON : 
+        - var app = <?php echo json_encode($array); ?>;
+        - Illuminate\Support\Js::from($array) (instanceof upper method)
+        -  JS::from($array)
+    - The @verbatim Directive : you do not have to prefix each Blade echo statement with an @ symbol
+-> Blade Directives:
+    - If Statements : @if,@elseif,@else,@endif
+    - @unless ... @endunless
+    - @isset(is defined and is not null...) and @empty(is empty)
+    - Authentication directives : @auth and @guest
+    - Environment Directives : @production OR @env([environment list])
+    - Section Directives : @hassection...@endif AND @@sectionMissing...@endif

@@ -1,10 +1,16 @@
 Laravel Basics :
-	Routing:
-	Middleware
-	CSRF Protection
-	Controller
-	Views
-	Models & Migrations
-	Request and Responses
-	Official documentation : The Basics
-	Official documentation : Eloquent ORM
+	- Routing:
+	- Middleware
+	- CSRF Protection
+	- Controller
+	- Views
+	- Models & Migrations
+	- Request and Responses
+	- Validation
+    - Request
+    - Error Handeling
+    - responses
+	- Official documentation : The Basics
+	- Official documentation : Eloquent ORM
+Database :
+    - Seeding

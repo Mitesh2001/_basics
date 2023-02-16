@@ -21,3 +21,10 @@
     - return $this->belongsTo(ParentModel::class,'foreign_key','owner_key')
     - Default Models : withDefault() allow you to define a default model that will be returned if the given relationship is null
     - return Model::whereBelongsTo($user,<relationShipName>)->get();
+-> Has One Of Many
+    - to get latest or oldest related model of the Relationships :
+        - Default By primary key :
+        - return $this->hasOne(Model::class)->latestOfMany()
+        - return $this->hasOne(Model::class)->oldestOfMany()
+        - ofMany()
+        - Advanced Has One Of Many Relationships
