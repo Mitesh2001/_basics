@@ -11,3 +11,14 @@
     - modelKeys()
     - makeVisible($attributes)
     - makeHidden($attributes)
+    - only($keys)
+    - setVisible($attributes)
+    - setHidden($attributes)
+    - toQuery()
+    - unique($key = null, $strict = false)
+-> Custom collections
+    - define function in model :
+        public function newCollection(array $models = []) {
+            return new CreatedCollection($models)
+        }
+    - CreatedCollection class should be create & extends with Illuminate\Database\Eloquent\Collection class
