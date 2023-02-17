@@ -59,3 +59,25 @@
     
     // Dynamic syntax...
     - return $this->throughEnvironments()->hasDeployments();
+
+-> Many to Many Relationship
+    - For example :
+        users
+            id - integer
+            name - string
+        
+        roles
+            id - integer
+            name - string
+        
+        role_user
+            user_id - integer
+            role_id - integer
+
+    - return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+    - Defining The Inverse Of The Relationship :
+        - return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+    - Retrieving Intermediate Table Columns
+        - withPivot(column1,column2...)
+        - withTimestamps();
+        - using pivot key
