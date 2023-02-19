@@ -1,0 +1,87 @@
+==> Polymorphic Relationship:
+
+    -> one to one :
+
+        - table structure :
+
+            posts
+                id - integer
+                name - string
+            users
+                id - integer
+                name - string
+            images
+                id - integer
+                url - string
+                imageable_id - integer (relationName_id)
+                imageable_type - string (relationName_type)
+
+        - Model Structure :
+
+            Post : {
+                public function image(): MorphOne
+                {
+                    return $this->morphOne(Image::class, 'imageable');
+                }
+            },
+            User : {
+                public function image(): MorphOne
+                {
+                    return $this->MorphOne(Image::class, 'imageable')
+                }
+            },
+            Image : {
+                public function imageable(): MorphTo
+                {
+                    return $this->morphTo(__FUNCTION__, 'imageable_type', 'imageable_id');
+                }
+            }
+
+        - Retrieving The Relationship:
+
+            - $image = $userModelOrPostModel->image
+            - $imageable = $image->imageable (depending on which type of model owns the image)
+
+    -> One to many : 
+
+        - table structure :
+            
+            posts
+                id - integer
+                title - string
+                body - text
+            videos
+                id - integer
+                title - string
+                url - string
+            comments
+                id - integer
+                body - text
+                commenteable_id - integer
+                commenteable_type - string
+        
+        - Model Structure :
+
+            Post {
+                public function comments() : MorphMany
+                {
+                    return $this->MorphMany(Comment::class,'commentable')
+                } 
+            },
+            videos {
+                public function comments() : MorphMany
+                {
+                    return $this->MorphMany(Comment::class,'commentable')
+                } 
+            },
+            comments {
+                public function commentable () : MorphTo
+                {
+                    return $this->morphTo(__FUNCTION__, 'commentable_type', 'commentable_id');
+                }
+            }
+
+         - Retrieving The Relationship:
+
+            - $comments = $videoModelOrPostModel->comments
+            - $commentable = $comment->commentable (depending on which type of model is the comment's parent)
