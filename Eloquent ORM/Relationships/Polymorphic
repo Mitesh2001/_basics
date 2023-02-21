@@ -84,4 +84,116 @@
          - Retrieving The Relationship:
 
             - $comments = $videoModelOrPostModel->comments
-            - $commentable = $comment->commentable (depending on which type of model is the comment's parent)
+            - $commentable = $comment->commentable (depending on which type of model is the comments parent)
+    
+    -> One of Many :
+
+        - to retrieve the latest or oldest related model of the relationship
+        - For example Post model :
+
+            Post {
+                public function latestComment() : MorphOne
+                {
+                    return $this->MorphOne(Comment::class,'commentable')->latestOfMany();
+                } 
+            }
+
+            OR 
+
+            Post {
+                public function oldestComment() : MorphOne
+                {
+                    return $this->MorphOne(Comment::class,'commentable')->oldestOfMany();
+                } 
+            }
+
+        - using ofMany() method:
+        
+            public function bestComment(): MorphOne
+            {
+                return $this->morphOne(Comment::class,'commentable')->ofMany('likes', 'max');
+            }
+
+    -> Many to many
+
+        - table structure:
+
+            posts
+                id - integer
+                name - string
+            
+            videos
+                id - integer
+                name - string
+            
+            tags
+                id - integer
+                name - string
+            
+            taggables
+                tag_id - integer
+                taggable_id - integer
+                taggable_type - string
+
+        - Model Structure
+            
+            Post & Video {
+
+                public function tags():MorphToMany
+                {
+                    return $this->MorphToMany(Tag::class,'taggable')
+                }
+
+            }
+
+        - Defining The Inverse Of The Relationship
+
+            Tag {
+
+                public function video():
+                {
+                    return $this->MorphedByMany(Video::class,'taggable')
+                }
+
+                public function post():
+                {
+                    return $this->MorphedByMany(Post::class,'taggable')
+                }
+
+            }
+        
+        - Retrieving The Relationship
+
+            $video = Video::find();
+            $video->tags;
+
+            $post = Post::find();
+            $post->tags;
+
+            $tag = Tag::find();
+            $tag->video;
+
+            $tag = Tag::find();
+            $tag->post;
+
+    -> Custom Polymorphic Types
+
+        - Define it in boot() method of App\Providers\AppServiceProvider :
+
+            use Illuminate\Database\Eloquent\Relations\Relation;
+ 
+            Relation::enforceMorphMap([
+                'post' => 'App\Models\Post',
+                'video' => 'App\Models\Video',
+            ]);
+
+        - getMorphClass() & getMorphedModel() :
+
+            use Illuminate\Database\Eloquent\Relations\Relation;
+ 
+            $alias = $instanceOfModel->getMorphClass(); //$post or $video
+            
+            $class = Relation::getMorphedModel($alias);
+
+
+
