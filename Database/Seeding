@@ -20,5 +20,33 @@ Note: Mass assignment protection is automatically disabled during database seedi
                 ]);
             }
 
-        - use Eloquant model factories
+        - use Eloquant model factories ;
+            Example :
+            public function run(): void
+            {
+                User::factory()->count(50)->hasPosts(1)->create();
+            }
 
+        - Calling Additional Seeders :
+            - using call() method 
+            Example :
+            public function run(): void
+            {
+                $this->call([
+                    UserSeeder::class,
+                    PostSeeder::class,
+                    CommentSeeder::class
+                ]);
+            }
+
+        - Muting Model Events :
+            - while running seeds, you may want to prevent models from dispatching events.
+            - use Illuminate\Database\Console\Seeds\WithoutModelEvents trait
+
+-> Running Seeders:
+    - php artisan db:seed (Default:Database\Seeders\DatabaseSeeder class)
+    - php artisan db:seed --class=PostSeeder
+    - php artisan migrate:fresh --seed
+    - php artisan migrate:fresh --seed --seeder=UserSeeder
+    - Forcing Seeders To Run In Production :
+        - php artisan db:seed --force
