@@ -1,0 +1,24 @@
+-> Laravel includes the ability to seed your database with data using seed classes
+-> All seed classes are stored in the database/seeders directory
+-> Default:DatabaseSeeder class from which we may use the Call() method to run other seeder classes in order.
+Note: Mass assignment protection is automatically disabled during database seeding !
+
+-> Writing Seeders :
+
+    - php artisan make:seeder UserSeeder
+    - contain only one method by default - run():void
+    - Data insert to database via :
+    
+        - use query builder to manually insert data :
+            Example :
+            public function run(): void
+            {
+                DB::table('users')->insert([
+                    'name' => Str::random(10),
+                    'email'=>Str::random(10).'@gmail.com',
+                    'password' => Hash::make('secret')
+                ]);
+            }
+
+        - use Eloquant model factories
+
