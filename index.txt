@@ -1,4 +1,4 @@
-Laravel Basics :
+The Basics :
 	- Routing:
 	- Middleware
 	- CSRF Protection
@@ -10,7 +10,13 @@ Laravel Basics :
     - Request
     - Error Handeling
     - responses
-	- Official documentation : The Basics
-	- Official documentation : Eloquent ORM
+Eloquent ORM :
+	- Getting Started
+	- Relationships
+	- Collections
+	- 
+	- API resources
+	-
+	- Factories
 Database :
     - Seeding
