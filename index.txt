@@ -15,5 +15,9 @@
 	- Collections
 	- Factories
 
+-> Security
+	- Encryption
+	- Hashing
+
 -> Official documentation : Database 
     - Seeding
