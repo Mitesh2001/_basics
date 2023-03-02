@@ -1,0 +1,24 @@
+-> Introduction
+    - validate() method
+
+-> Validation Quickstart
+    - Defining The Routes
+    - Creating The Controller
+    - Writing The Validation Logic 
+        - validate() method is provided by the \Illumninate\Http\Request object
+        - If fails \Illuminate\Validation\ValidationException exception will be thrown
+            Ex. 
+                $request->validate(['title' => 'required|unique:posts|max:255'])
+                $request->validate(['title' => ['required','unique:posts','max:255']])
+                $request->validateWithBag('product',[['title' => ['required','unique:posts','max:255']]])
+        - Stopping On First Validation Failure
+            - bail rule at the 
+                Ex.
+                'title' => 'bail|required|unique:posts|max:255'
+        - Note : If the incoming HTTP request contains "nested" field data, you may specify these fields in your validation rules using "dot" syntax
+            Ex.  
+            [
+                'author.name' => 'required',
+                'author.description' => 'required',
+            ]
+                
