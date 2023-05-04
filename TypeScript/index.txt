@@ -30,3 +30,8 @@ Special Types :
     -> Arrays : 
         - Ex. const names: string[] = [];
         - readonly
+    -> Tuples
+        - Typed Arrays : A tuple is a typed array with a pre-defined length and types for each index
+        - Readonly Tuple
+        - Named Tuples
+        - Destructuring Tuples
