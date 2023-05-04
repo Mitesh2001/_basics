@@ -1,0 +1,32 @@
+-> TypeScript is JavaScript with added syntax for types.
+-> This basically means that TypeScript adds syntax on top of JavaScript, allowing developers to add types.
+
+Why should I use TypeScript?
+
+-> JavaScript is a loosely typed language. It can be difficult to understand what types of data are being passed around in JavaScript.
+-> TypeScript allows specifying the types of data being passed around within the code, and has the ability to report errors when the types don't match.
+-> TypeScript uses compile time type checking. Which means it checks if the specified types match before running the code, not while running the code.
+
+TypeScript Simple Types:
+
+boolean - true or false values
+number - whole numbers and floating point values
+string - text values like "TypeScript Rocks"
+
+Type Assignment:
+
+    -> Explicit Type : writing out the type
+    -> Implicit - TypeScript will "guess" the type, based on the assigned value
+
+Special Types :
+    
+    -> any
+    -> unknown
+    -> never
+    -> undefined
+    -> null
+    -> never
+    -> undefined & null
+    -> Arrays : 
+        - Ex. const names: string[] = [];
+        - readonly
